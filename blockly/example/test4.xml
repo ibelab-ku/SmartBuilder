@@ -1,0 +1,134 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <variables>
+    <variable type="" id="_HJlYfw.YEE?k7rD2pG%">Buyer</variable>
+    <variable type="" id="fea8NM^;FN2:x4u!iGtK">Seller</variable>
+    <variable type="" id="4lEs$`%|!VT/j_[`nlh$">variable</variable>
+    <variable type="" id="?3?yDa%olR-l:~M!e0#=">Amount</variable>
+  </variables>
+  <block type="chaincode_init" id="0rjhOB}5_bH1GvZy/lYG" x="-162" y="-212">
+    <statement name="init_func">
+      <block type="variables_set" id="Nn0l{a-6_WHxv%B!G`to">
+        <field name="VAR" id="_HJlYfw.YEE?k7rD2pG%" variabletype="">Buyer</field>
+        <value name="VALUE">
+          <block type="text" id="hLQ#TAioS]xp.bnkU{mc">
+            <field name="TEXT">Alice</field>
+          </block>
+        </value>
+        <next>
+          <block type="set_value" id="Q4y?la+^=wRU@q#_$1L6">
+            <field name="check_set_security">TRUE</field>
+            <field name="data" id="_HJlYfw.YEE?k7rD2pG%" variabletype="">Buyer</field>
+            <value name="VARIABLE">
+              <block type="math_number" id="|J2RDZ5AQsr%x/[t7NYg">
+                <field name="NUM">3000</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="e^:WD${|n`]rcVRQr4{:">
+                <field name="VAR" id="fea8NM^;FN2:x4u!iGtK" variabletype="">Seller</field>
+                <value name="VALUE">
+                  <block type="text" id="hcYr??_45/Gi%]T?B%I5">
+                    <field name="TEXT">Bob</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="set_value" id="7^FOCVo$w!pg*@W.spQt">
+                    <field name="check_set_security">TRUE</field>
+                    <field name="data" id="_HJlYfw.YEE?k7rD2pG%" variabletype="">Buyer</field>
+                    <value name="VARIABLE">
+                      <block type="math_number" id="vAZo[nAlV+74Ic!(16}z">
+                        <field name="NUM">2500</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set" id="10v(;tpcL]mzgYnchdHp">
+                        <field name="VAR" id="?3?yDa%olR-l:~M!e0#=" variabletype="">Amount</field>
+                        <value name="VALUE">
+                          <block type="math_number" id="p`~m9JrbH=#FxBHo/`7H">
+                            <field name="NUM">250.5</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="chaincode_body" id="!Da]69r3EIl^9tquMyZL">
+        <statement name="body_func">
+          <block type="controls_ifelse" id="(;60r;E~4Saz2YtBV`gg">
+            <value name="IF0">
+              <block type="logic_compare" id="]nhL?wfOh%OBzP:=pZJ)">
+                <field name="OP">GTE</field>
+                <value name="A">
+                  <block type="variables_get" id="/}1~CcfZ!#DSP)|EL8iU">
+                    <field name="VAR" id="_HJlYfw.YEE?k7rD2pG%" variabletype="">Buyer</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="variables_get" id="wR]U|b0U)2WP,9l7w4@t">
+                    <field name="VAR" id="?3?yDa%olR-l:~M!e0#=" variabletype="">Amount</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="chaincode_invoke" id=",aR+HwT.NvWbEC0@AY7x">
+                <field name="check_invoke_security">TRUE</field>
+                <value name="user_A">
+                  <block type="variables_get" id="$39_ac,b+x,cC,:-u.i;">
+                    <field name="VAR" id="_HJlYfw.YEE?k7rD2pG%" variabletype="">Buyer</field>
+                  </block>
+                </value>
+                <value name="user_B">
+                  <block type="variables_get" id="%M%G#wySA`H@C#$a=_IZ">
+                    <field name="VAR" id="fea8NM^;FN2:x4u!iGtK" variabletype="">Seller</field>
+                  </block>
+                </value>
+                <value name="money_num">
+                  <block type="variables_get" id="B#cjLu)(h]MknNBuS%cG">
+                    <field name="VAR" id="?3?yDa%olR-l:~M!e0#=" variabletype="">Amount</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="chaincode_query" id="pDv!X.)p;J8Lqd1aZHhd">
+                    <field name="check_query_security">TRUE</field>
+                    <value name="user_Query">
+                      <block type="variables_get" id="UH9z}~q.1MfUsDAG%`[]">
+                        <field name="VAR" id="_HJlYfw.YEE?k7rD2pG%" variabletype="">Buyer</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="chaincode_query" id="`2Kjv+sjK{DUJrLLDxyE">
+                        <field name="check_query_security">TRUE</field>
+                        <value name="user_Query">
+                          <block type="variables_get" id="HlLG4.6kwx?fnR)6#-mx">
+                            <field name="VAR" id="fea8NM^;FN2:x4u!iGtK" variabletype="">Seller</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <statement name="ELSE">
+              <block type="text_print" id="J_@EcY#ZjUl?[+oe7b`l">
+                <value name="TEXT">
+                  <block type="text" id="k%phP0=b{PxH$!^i_gvT">
+                    <field name="TEXT">Not enough balance</field>
+                  </block>
+                </value>
+              </block>
+            </statement>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

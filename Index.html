@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title> SmartBuilder Framework </title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <!-- <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, text/html, charset=utf-8"> -->
+	<script src="blockly/blockly_compressed.js"></script>
+	<script src="blockly/blocks_compressed.js"></script>
+	<script src="blockly/msg/js/en.js"></script>
+	<script src="blockly/go_compressed.js"></script>
+	<script src="blockly/natural_compressed.js"></script>
+	<script src="blockly/blocks/chaincode.js"></script>
+	<!-- <script src="blockly/blocks/logic.js"></script>     -->
+	<!-- <script src="blockly/blocks/loops.js"></script>       -->
+	<!-- <script src="blockly/blocks/math.js"></script>   -->
+	<!-- <script src="blockly/blocks/text.js"></script>    -->
+	<link href="blockly/blockly_css.css" rel="stylesheet">
+    <link rel="icon" href="assets/img/b2c_icon.png">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,800' rel='stylesheet' type='text/css'>
+</head>
+
+<style>
+
+body {
+	background-color: #8698db;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+  overflow-x: hidden;
+}
+
+button {
+	background-color: #514c8a;
+	border: none;
+}
+</style>
+
+<body>
+	<div class="firstline"> <font color="white"> <b> SmartBuilder Framework </b></font>
+		<!-- <button onClick="deleteWorkspace()" id="trashButton" class="space"> <img src='blockly/media/1x1.gif' class="trash icon21"> </button> -->
+		<!-- <button id="linkButton" class="space"> <img src='blockly/media/1x1.gif' class="link icon21"> </button> -->
+		<button onClick="Help()" class="space"><font color="#fffafa">Help</font></button>
+		<button onClick="loadWorkspace()" class="space"><font color="#fffafa">Reload Blocks</font></button>
+		<button onClick="saveWorkspace()" class="space"><font color="#fffafa">Save Blocks</font></button>
+		<button onClick="saveXML()" class="space"><font color="#fffafa">SaveXML</font></button>
+		<button onClick="files.click()" class="space"><font color="#fffafa">LoadXML</font></button>
+		<input type="file" id="files" onChange="loadXML()" name="myFile" accept="application/xml" style="position:absolute; filter:alpha(opacity=0); opacity:0; width:30px; " />
+		<button onClick="saveGO()" class="space"><font color="#fffafa">SaveGo</font></button>
+		<button onClick="Blockly.mainWorkspace.undo(true)" class="space"><font color="#fffafa">Redo</font></button>
+		<button onClick="Blockly.mainWorkspace.undo()" class="space"><font color="#fffafa">Undo</font></button>
+	</div>
+
+	<div class="app-container">
+		<div id="blocklyDiv" class="main blockly-panel"></div>
+		<div id="codeDiv1" class="main output-panel">
+			<div class="dropdown-bar"> Language:
+				<div id="im-just-an-underline">
+					<select id="languageDropdown1" class="languageDropdown" onChange="myUpdateFunction();">
+						<option value="Go">Go</option>
+						<option value="Natural" selected="selected">Natural</option>
+					</select>
+				</div>
+			</div>
+			<hr class="POps">
+			<pre></pre>
+		</div>
+	</div>
+
+	<div id="playButton" class="play-button material-icons">Run</div>
+
+	<xml id="toolbox" style="display: none">
+		<category name="Init " colour="50" expanded="false">
+			<block type="chaincode_init"></block>			
+		</category>
+
+		<category name="Body " colour="100">
+			<block type="chaincode_body"></block>
+			<block type="chaincode_init_body" disabled="true"></block> 
+		</category> 
+
+		<category name="Functions " colour="150">
+			<block type="chaincode_invoke"></block>
+			<block type="chaincode_query"></block>
+			<block type="chaincode_delete"></block>
+			<block type="set_value"></block>
+			<block type="math_number"></block>
+		</category>
+
+		<category name="Logic " colour="200">
+			<block type="logic_boolean"></block>						
+			<block type="controls_if"></block>			
+			<block type="logic_compare"></block>
+			<block type="logic_operation"></block>
+			<block type="logic_null"></block>
+			<block type="logic_ternary"></block>			
+		</category>
+		
+		<category name="Loops " colour="250">
+			<block type="controls_forEach"></block>			
+			<block type="controls_flow_statements"></block>
+			<block type="controls_repeat_ext"></block>
+			<block type="controls_whileUntil"></block>
+			<block type="controls_for"></block>			
+		</category>
+
+		<category name="Math" colour="300"> 
+			<block type="math_number"> </block>
+			<block type="math_arithmetic"> </block>
+			<block type="math_number_property"> </block>
+			<!-- <block type="math_change"> </block> -->
+			<block type="math_round"> </block>
+			<block type="math_on_list"> </block>
+			<block type="math_modulo"> </block>
+			<block type="math_constrain"> </block>			
+		</category>
+
+		<sep gap="32"></sep>
+		<category id="catVariables" colour="350" custom="VARIABLE" name="Variables "></category>
+
+		<!-- <category colour="390" name="Text">
+			<block type="text"></block>
+			<block type="text_print"></block>
+			<block type="text_create_join_container"></block>
+			<block type="text_append"></block>
+			<block type="text_length"></block>
+			<block type="text_isEmpty"></block>
+			<block type="text_charAt"></block>			
+		</category> -->
+		
+		<sep></sep>
+		<category colour="410" name="Library ">
+			<category name="Example01 ">
+				<block type="chaincode_init">
+					<statement name="init_func">
+						<block type="set_value">
+							<field name="data">Account</field>
+							<value name="VARIABLE">
+								<shadow type="math_number">
+									<field name="NUM">20</field>
+								</shadow>
+							</value>
+						</block>
+					</statement>
+					<next>
+						<block type="chaincode_body">
+							<statement name="body_func">
+								<block type="chaincode_query">
+									<value name="user_Query">
+										<shadow type="variables_get">
+											<field name="VAR">Account</field>
+										</shadow>
+									</value>
+								</block>
+							</statement>
+						</block>
+					</next>
+				</block>
+			</category>
+			
+			<category name="Example02 ">
+				<block type="chaincode_init">
+					<statement name="init_func">
+						<block type="set_value">
+							<field name="data">A</field>
+							<value name="VARIABLE">
+								<shadow type="math_number">
+									<field name="NUM">100</field>
+								</shadow>
+							</value>
+							<next>
+								<block type="set_value">
+									<field name="data">B</field>
+									<value name="VARIABLE">
+										<shadow type="math_number">
+											<field name="NUM">200</field>
+										</shadow>
+									</value>
+								</block>
+							</next>
+						</block>
+					</statement>
+					<next>
+						<block type="chaincode_body">
+							<statement name="body_func">
+								<block type="chaincode_invoke">
+									<value name="user_A">
+										<shadow type="variables_get">
+											<field name="VAR">A</field>
+										</shadow>
+									</value>
+									<value name="user_B">
+										<shadow type="variables_get">
+											<field name="VAR">B</field>
+										</shadow>
+									</value>
+									<value name="money_num">
+										<shadow type="math_number">
+											<field name="NUM">50</field>
+										</shadow>
+									</value>
+									<next>
+									<!--	<block type="chaincode_query">
+											<value name="user_Query">
+												<shadow type="variables_get">
+													<field name="VAR">A</field>
+												</shadow>
+											</value>
+											<next>
+												<block type="chaincode_query">
+													<value name="user_Query">
+														<shadow type="variables_get">
+															<field name="VAR">B</field>
+														</shadow>
+													</value>
+												</block>
+											</next>         -->
+										</block> 
+									</next> 
+								</block>
+						</block>
+					</next>
+					</statement>
+				</block>
+			</category>
+
+			<category name="Example03 ">
+				<block type="chaincode_init">
+					<statement name="init_func">
+						<block type="set_value">
+							<field name="data">Alice</field>
+							<value name="VARIABLE">
+								<shadow type="math_number">
+									<field name="NUM">250</field>
+								</shadow>
+							</value>
+							<next>
+								<block type="set_value">
+									<field name="data">Bob</field>
+									<value name="VARIABLE">
+										<shadow type="math_number">
+											<field name="NUM">300</field>
+										</shadow>
+									</value>
+								</block>
+							</next>
+						</block>
+
+					</statement>					
+					
+					<next>
+
+					<block type="chaincode_body">
+						<statement name="body_func">
+							<block type="chaincode_invoke">
+								<value name="user_A">
+									<shadow type="variables_get">
+										<field name="VAR">Alice</field>
+									</shadow>
+								</value>
+								<value name="user_B">
+									<shadow type="variables_get">
+										<field name="VAR">Bob</field>
+									</shadow>
+								</value>
+								<value name="money_num">
+									<shadow type="math_number">
+										<field name="NUM">50</field>
+									</shadow>
+								</value>
+								<next>
+									<block type="chaincode_query">
+										<value name="user_Query">
+											<shadow type="variables_get">
+												<field name="VAR">Alice</field>
+											</shadow>
+										</value>
+										<next>
+											<block type="chaincode_query">
+												<value name="user_Query">
+													<shadow type="variables_get">
+														<field name="VAR">Bob</field>
+													</shadow>
+												</value>
+											</block> 										
+										</next>
+									</block>
+								</next>
+							</block>
+					</block>				
+			</category>
+
+		</category>
+	</xml>
+
+	<xml id="blocklyDefault" style="display: none">
+		<block type="chaincode_init">
+			<statement name="init_func">
+				<block type="set_value">
+					<field name="data">Alice</field>
+					<value name="VARIABLE">
+						<block type="math_number">
+							<field name="NUM">700</field>
+						</block>
+					</value>
+					<next>
+						<block type="set_value">
+							<field name="data">Bob</field>
+							<value name="VARIABLE">
+								<block type="math_number">
+									<field name="NUM">1500</field>
+								</block>
+							</value>
+						</block>
+					</next>
+				</block>
+			</statement>
+			<next>
+				<block type="chaincode_body">
+					<statement name="body_func">
+						<block type="chaincode_invoke">
+							<value name="user_A">
+								<block type="variables_get">
+									<field name="VAR">Alice</field>
+								</block>
+							</value>
+							<value name="user_B">
+								<block type="variables_get">
+									<field name="VAR">Bob</field>
+								</block>
+							</value>
+							<value name="money_num">
+								<block type="math_number">
+									<field name="NUM">110.5</field>
+								</block>
+							</value>
+							<next>
+								<block type="chaincode_query">
+									<value name="user_Query">
+										<block type="variables_get">
+											<field name="VAR">Alice</field>
+										</block>
+									</value>
+									<next>
+										<block type="chaincode_query">
+											<value name="user_Query">
+												<block type="variables_get">
+													<field name="VAR">Bob</field>
+												</block>
+											</value>
+										</block>
+									</next>
+								</block>
+							</next>
+						</block>
+				</block>
+			</next>
+			</statement>
+		</block>
+	</xml>
+
+	<script>
+
+		// Construct the toolbox XML.
+		var toolboxText = document.getElementById('toolbox').outerHTML;
+		var toolboxXml = Blockly.Xml.textToDom(toolboxText);
+		var workspace = Blockly.inject('blocklyDiv', {
+			grid: {
+				spacing: 25,
+				length: 3,
+				colour: '#ccc',
+				snap: true
+			},
+			media: 'blockly/media/',
+			toolbox: toolboxXml,
+			zoom: {
+				controls: true,
+				wheel: true,
+				pinch: true
+			},
+			trashcan: true
+		});
+
+		var defaultBlocks = document.getElementById('blocklyDefault');
+		Blockly.Xml.domToWorkspace(defaultBlocks, workspace);
+
+		function myUpdateFunction(event) {
+			var languageDropdown = document.getElementById('languageDropdown1');
+			var languageSelection = languageDropdown.options[languageDropdown.selectedIndex].value;
+			var codeDiv = document.getElementById('codeDiv1');
+			var codeHolder = document.createElement('pre');
+			codeHolder.id = 'code1';
+			codeHolder.className = 'prettyprint but-not-that-pretty';
+			var code = document.createTextNode(Blockly[languageSelection].workspaceToCode(workspace));
+			codeHolder.appendChild(code);
+			codeDiv1.replaceChild(codeHolder, codeDiv1.lastElementChild);
+
+			languageDropdown = document.getElementById('languageDropdown2');
+			languageSelection = languageDropdown.options[languageDropdown.selectedIndex].value;
+			codeDiv = document.getElementById('codeDiv2');
+			codeHolder = document.createElement('pre');
+			codeHolder.id = 'code2';
+			codeHolder.className = 'prettyprint but-not-that-pretty';
+			code = document.createTextNode(Blockly[languageSelection].workspaceToCode(workspace));
+			codeHolder.appendChild(code);
+			codeDiv2.replaceChild(codeHolder, codeDiv2.lastElementChild);
+		}
+		workspace.addChangeListener(myUpdateFunction);
+
+		// document.getElementById("linkButton").addEventListener("click", function() {
+		// 	workspace.scrollCenter();
+		// });
+
+		function executeBlockCode() {
+			window.alert("exe");
+		}
+		document.getElementById("playButton").addEventListener("click", executeBlockCode);
+
+		function saveXML() {
+			var xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+			var contents = Blockly.Xml.domToPrettyText(xmlDom);
+			window.alert(contents);
+			var fileType = 'xml';
+			var filename = prompt('Enter the file name under which to save your blocks.', 'file_name.xml');
+			// Download file if all necessary parameters are provided.
+			if(filename) {
+				var data = new Blob([contents], {
+					type: 'text/' + fileType
+				});
+				var clickEvent = new MouseEvent("click", {
+					"view": window,
+					"bubbles": true,
+					"cancelable": false
+				});
+
+				var a = document.createElement('a');
+				a.href = window.URL.createObjectURL(data);
+				a.download = filename;
+				a.textContent = 'Download file!';
+				a.dispatchEvent(clickEvent);
+				window.alert("Saved successfully");
+			} else {
+				alert('Could not export Blocks without file name under which to ' +
+					'save blocks.');
+			}
+		}
+
+		function saveGO() {
+			//var code = document.createTextNode(Blockly['Go'].workspaceToCode(workspace));
+			var code = document.getElementById('code1');
+			var content = code.innerHTML;
+			window.alert(content);
+			var fileType = 'go';
+			var filename = prompt('Enter the file name under which to save your go code.', 'file_name.go');
+			// Download file if all necessary parameters are provided.
+			if(filename) {
+				var data = new Blob([content], {
+					type: 'text/' + fileType
+				});
+				var clickEvent = new MouseEvent("click", {
+					"view": window,
+					"bubbles": true,
+					"cancelable": false
+				});
+
+				var a = document.createElement('a');
+				a.href = window.URL.createObjectURL(data);
+				a.download = filename;
+				a.textContent = 'Download code file!';
+				a.dispatchEvent(clickEvent);
+				window.alert("Saved successfully");
+			} else {
+				alert('Could not export Blocks without file name under which to ' +
+					'save go code.');
+			}
+		}
+
+		function loadXML() {
+			//window.alert("Open successfully");
+			var files = document.getElementById('files');
+			// If the file list is empty, the user likely canceled in the dialog.
+			if(files.files.length > 0) {
+				// The input tag doesn't have the "multiple" attribute
+				// so the user can only choose 1 file.
+				var file = files.files[0];
+				var fileReader = new FileReader();
+			}
+			fileReader.addEventListener('load', function(event) {
+				var fileContents = event.target.result;
+				// Create empty object to hold the read block library information.
+				//window.alert(fileContents);
+				if(fileContents) {
+					Blockly.mainWorkspace.clear();
+					xmlDom = Blockly.Xml.textToDom(fileContents);
+					Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xmlDom);
+					window.alert("Open successfully");
+				}
+			});
+			fileReader.readAsText(file);
+		}
+
+		function saveWorkspace() {
+			var xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+			var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+
+			localStorage.setItem("blockly.xml", xmlText);
+			window.alert("Saved successfully");
+		}
+
+		function loadWorkspace() {
+			var xmlText = localStorage.getItem("blockly.xml");			
+			if(xmlText) {
+				Blockly.mainWorkspace.clear();				xmlDom = Blockly.Xml.textToDom(xmlText);
+				Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xmlDom);
+				window.alert("Loaded successfully");
+			}
+		}
+
+		function deleteWorkspace() {
+			var count = workspace.getAllBlocks().length;
+			if(count < 2 ||
+				window.confirm(Blockly.Msg.DELETE_ALL_BLOCKS.replace('%1', count))) {
+				workspace.clear();
+				if(window.location.hash) {
+					window.location.hash = '';
+				}
+			}
+		};
+	</script>
+	
+</body>
