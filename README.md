@@ -4,7 +4,7 @@ SmartBuilder: A Block-based Visual Programming Framework for Smart Contract Deve
 
 ### Technology stack used
 
-- SmartBuilder Framework - Google Blockly API, Webpage (HTML, CSS, Javascript, XML), Chaincode in Golang
+- SmartBuilder Framework - Google Blockly API, Webpage (HTML, CSS, Javascript, XML), Chaincode in Golang.
 
 ![SmartBuilder User Interface](https://github.com/mlecjm/SmartBuilder/blob/main/assets/img/SmartBuilder.png)
 
@@ -16,7 +16,7 @@ M. M. Merlec, Y. K. Lee and H. P. In, "[SmartBuilder: A Block-based Visual Progr
 - [PPT Slides](https://drive.google.com/file/d/13N4GoO_JxGzp_jdazuG92kneuoAsozdS/view?usp=sharing) 
 - [Presentation](https://youtu.be/p5gWzTp5Xeg) 
 - [Demo](https://youtu.be/PzaxFFpk_4M)
--
+
 ##
 ### iBELab - Intelligent Blockchain Engineering Lab.
 https://ibel.korea.ac.kr/  -  Korea University
