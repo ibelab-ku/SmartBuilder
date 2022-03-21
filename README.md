@@ -1,5 +1,5 @@
 # SmartBuilder
-SmartBuilder: A Block-based Visual Programming Framework for Smart Contract Development
+A Block-based Visual Programming Framework for Smart Contract Development
 
 
 ### Technology stack used
