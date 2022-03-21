@@ -13,10 +13,11 @@ SmartBuilder: A Block-based Visual Programming Framework for Smart Contract Deve
 ### Publication 
 M. M. Merlec, Y. K. Lee and H. P. In, "[SmartBuilder: A Block-based Visual Programming Framework for Smart Contract Development](https://ieeexplore.ieee.org/document/9680565)," 2021 IEEE International Conference on Blockchain (Blockchain), 2021, pp. 90-94, doi: 10.1109/Blockchain53845.2021.00023.
 
-- [PPT Slides](https://drive.google.com/file/d/13N4GoO_JxGzp_jdazuG92kneuoAsozdS/view?usp=sharing) 
-- [Presentation](https://youtu.be/p5gWzTp5Xeg) 
 - [Demo Youtube Video](https://youtu.be/PzaxFFpk_4M)
 [![SmartBuilder Demo](https://github.com/ibelab-ku/SmartBuilder/blob/main/assets/img/Demo.png)](https://youtu.be/PzaxFFpk_4M)
+- [PPT Slides](https://drive.google.com/file/d/13N4GoO_JxGzp_jdazuG92kneuoAsozdS/view?usp=sharing) 
+- [IEEE Blockchain 2021 - SmartBuilder Presention](https://youtu.be/p5gWzTp5Xeg) 
+[![IEEE Blockchain 2021 - SmartBuilder Presention](https://github.com/ibelab-ku/SmartBuilder/blob/main/assets/img/IEEE%20Blockchain%202021_Presention%20.png)](https://youtu.be/p5gWzTp5Xeg)
 
 ##
 ### iBELab - Intelligent Blockchain Engineering Lab.
