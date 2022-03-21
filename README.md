@@ -15,8 +15,8 @@ M. M. Merlec, Y. K. Lee and H. P. In, "[SmartBuilder: A Block-based Visual Progr
 
 - [Demo Youtube Video](https://youtu.be/PzaxFFpk_4M)
 [![SmartBuilder Demo](https://github.com/ibelab-ku/SmartBuilder/blob/main/assets/img/Demo.png)](https://youtu.be/PzaxFFpk_4M)
-- [PPT Slides](https://drive.google.com/file/d/13N4GoO_JxGzp_jdazuG92kneuoAsozdS/view?usp=sharing) 
-- [IEEE Blockchain 2021 - SmartBuilder Presention](https://youtu.be/p5gWzTp5Xeg) 
+ 
+- [IEEE Blockchain 2021 - SmartBuilder Presention](https://youtu.be/p5gWzTp5Xeg) [[PPT Slides](https://drive.google.com/file/d/13N4GoO_JxGzp_jdazuG92kneuoAsozdS/view?usp=sharing)]
 [![IEEE Blockchain 2021 - SmartBuilder Presention](https://github.com/ibelab-ku/SmartBuilder/blob/main/assets/img/IEEE%20Blockchain%202021_Presention%20.png)](https://youtu.be/p5gWzTp5Xeg)
 
 ##
